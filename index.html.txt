@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fadaria – Mapas das Estrelas & Presentes</title>
+
+<!-- FONTES PROFISSIONAIS -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* PALETA */
+:root{
+  --bg-grad-top:#fff7f3;
+  --bg-grad-bottom:#ffe6dd;
+  --card:#ffffff;
+  --accent:#ffb3c6;
+  --accent-soft:#ffe6f0;
+  --text:#3b2523;
+  --text-soft:#71514d;
+  --border-soft:#f2d7cb;
+}
+
+body{
+  min-height:100vh;
+  font-family:"DM Sans",system-ui,-apple-system,blinkmacsystemfont,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg,var(--bg-grad-top),var(--bg-grad-bottom));
+}
+
+/* ================= HEADER ================= */
+header{
+  width:100%;
+  height:78px;
+  background:#ffffffcc;
+  backdrop-filter:blur(14px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:fixed;
+  top:0;left:0;
+  z-index:999;
+  border-bottom:1px solid rgba(244,203,188,.7);
+  box-shadow:0 10px 30px rgba(0,0,0,.04);
+}
+.nav{
+  width:92%;
+  max-width:1300px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.nav-logo-img{
+  height:42px;
+  width:auto;
+  object-fit:contain;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+.nav-links a{
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+  color:var(--text-soft);
+  position:relative;
+  padding-bottom:4px;
+  transition:.25s ease;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;bottom:0;
+  height:2px;width:0;
+  background:var(--accent);
+  border-radius:999px;
+  transition:.25s ease;
+}
+.nav-links a:hover{
+  color:var(--text);
+}
+.nav-links a:hover::after{width:100%}
+.nav-icons{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  font-size:20px;
+  color:var(--text-soft);
+}
+.nav-cart{
+  position:relative;
+  cursor:pointer;
+}
+.nav-cart-count{
+  position:absolute;
+  top:-6px;right:-9px;
+  background:#ff94b0;
+  color:#fff;
+  font-size:11px;
+  min-width:18px;
+  height:18px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ================= HERO ================= */
+.hero{
+  width:100%;
+  min-height:540px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:120px 0 110px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url('img/CAPAGRANDE.png') center/cover no-repeat;
+  opacity:.9;
+  filter:saturate(1.05);
+  z-index:-2;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 0 0,rgba(255,255,255,.8),transparent 55%),
+             radial-gradient(circle at 100% 100%,rgba(255,255,255,.7),transparent 55%),
+             linear-gradient(180deg,rgba(255,247,243,.72),rgba(255,230,221,.95));
+  z-index:-1;
+}
+.hero-inner{
+  width:92%;
+  max-width:1300px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:48px;
+}
+.hero-left{
+  width:50%;
+  max-width:650px;
+}
+.hero-left h1{
+  font-size:52px;
+  line-height:1.1;
+  font-family:"Playfair Display",serif;
+  font-weight:600;
+  margin-bottom:14px;
+  letter-spacing:.01em;
+}
+.hero-left h1 span{
+  color:#e4758f;
+}
+.hero-left p{
+  font-size:22px;
+  line-height:1.6;
+  margin-bottom:22px;
+  color:var(--text-soft);
+}
+.hero-small{
+  font-size:13px;
+  color:#88615c;
+  margin-top:12px;
+}
+.hero-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  background:linear-gradient(135deg,#ffb3c6,#ff9bb6);
+  padding:15px 28px;
+  border-radius:999px;
+  color:var(--text);
+  font-weight:600;
+  font-size:15px;
+  text-decoration:none;
+  box-shadow:0 16px 35px rgba(233,134,158,.5);
+  border:none;
+  cursor:pointer;
+  transition:.22s ease;
+}
+.hero-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 20px 40px rgba(233,134,158,.55);
+}
+.hero-right{
+  width:40%;
+  max-width:520px;
+}
+.hero-right img{
+  width:100%;
+  border-radius:22px;
+  box-shadow:0 24px 55px rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,.6);
+}
+
+/* ================= BENEFÍCIOS ================= */
+.benefits{
+  width:100%;
+  background:#fffaf6;
+  padding:18px 0;
+  display:flex;
+  justify-content:center;
+  border-top:1px solid var(--border-soft);
+  border-bottom:1px solid var(--border-soft);
+}
+.benefits-inner{
+  width:92%;
+  max-width:1300px;
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  font-size:15px;
+  color:var(--text-soft);
+}
+.benefit-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* ================= SEÇÕES BASE ================= */
+.section{
+  width:100%;
+  padding:80px 0 65px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  scroll-margin-top:90px;
+}
+.section h2{
+  font-size:34px;
+  font-family:"Playfair Display",serif;
+  margin-bottom:8px;
+  letter-spacing:.01em;
+}
+.section p.section-sub{
+  font-size:17px;
+  color:var(--text-soft);
+  width:62%;
+  max-width:720px;
+  text-align:center;
+  margin-bottom:38px;
+  line-height:1.7;
+}
+
+/* ================= CAROUSEL (MAPAS) ================= */
+.carousel{
+  width:92%;
+  max-width:1300px;
+  overflow:hidden;
+}
+.carousel-inner{
+  display:flex;
+  gap:22px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  padding:6px 2px 14px;
+}
+.carousel-inner::-webkit-scrollbar{height:7px}
+.carousel-inner::-webkit-scrollbar-thumb{
+  background:#ffc1d1;
+  border-radius:20px;
+}
+.model-card{
+  min-width:300px;
+  height:440px;
+  background:var(--card);
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.06);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:.22s ease;
+  border:1px solid rgba(255,255,255,.8);
+}
+.model-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 40px rgba(0,0,0,.09);
+}
+.model-card img{
+  width:100%;
+  height:72%;
+  object-fit:cover;
+}
+.model-body{
+  padding:10px 16px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.model-name{
+  font-size:17px;
+  font-weight:600;
+}
+.model-price{
+  font-size:15px;
+  color:var(--text-soft);
+}
+.model-btn{
+  margin-top:8px;
+  align-self:flex-start;
+  padding:8px 16px;
+  border-radius:999px;
+  border:none;
+  background:var(--accent);
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  color:var(--text);
+  box-shadow:0 10px 25px rgba(233,134,158,.45);
+  transition:.2s ease;
+}
+.model-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 12px 30px rgba(233,134,158,.5);
+}
+.carousel-nav{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  gap:26px;
+  font-size:15px;
+  color:var(--text-soft);
+}
+.carousel-nav button{
+  background:none;
+  border:none;
+  font-size:15px;
+  cursor:pointer;
+  color:var(--text-soft);
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+.carousel-nav button:hover{color:var(--text)}
+
+/* ================= OUTROS PRESENTES ================= */
+.gifts{
+  width:92%;
+  max-width:1300px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:22px;
+}
+.gift-card{
+  background:var(--card);
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(0,0,0,.06);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:.2s ease;
+  border:1px solid rgba(255,255,255,.8);
+}
+.gift-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 40px rgba(0,0,0,.09);
+}
+.gift-img{
+  width:100%;
+  height:160px;
+  overflow:hidden;
+}
+.gift-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.gift-body{
+  padding:12px 16px 14px;
+  font-size:14px;
+}
+.gift-name{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:4px;
+}
+.gift-price{
+  font-size:15px;
+  color:var(--text-soft);
+  margin-bottom:6px;
+}
+.gift-body p{
+  font-size:13px;
+  color:var(--text-soft);
+  line-height:1.5;
+}
+.gift-btn{
+  margin-top:8px;
+  padding:8px 16px;
+  border-radius:999px;
+  border:none;
+  background:var(--accent);
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  color:var(--text);
+  box-shadow:0 10px 24px rgba(233,134,158,.45);
+  transition:.2s ease;
+}
+.gift-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 12px 30px rgba(233,134,158,.5);
+}
+
+/* ================= CARRINHO ================= */
+.cart-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  display:none;
+  justify-content:flex-end;
+  z-index:998;
+}
+.cart{
+  width:360px;
+  max-width:100%;
+  background:#fff;
+  height:100%;
+  box-shadow:-4px 0 25px rgba(0,0,0,.25);
+  display:flex;
+  flex-direction:column;
+}
+.cart-header{
+  padding:16px 16px 10px;
+  border-bottom:1px solid var(--border-soft);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.cart-title{font-weight:600;}
+.cart-close{
+  cursor:pointer;
+  font-size:22px;
+  color:#b26262;
+}
+.cart-items{
+  flex:1;
+  overflow-y:auto;
+  padding:10px 16px;
+  font-size:13px;
+}
+.cart-item{
+  border-bottom:1px solid #f3e0d8;
+  padding:8px 0;
+}
+.cart-item-title{
+  font-weight:600;
+  font-size:14px;
+}
+.cart-item-meta{
+  color:#775454;
+  margin:3px 0;
+}
+.cart-footer{
+  border-top:1px solid var(--border-soft);
+  padding:12px 16px 16px;
+  font-size:14px;
+}
+.cart-total{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+.cart-btn-whats{
+  width:100%;
+  padding:10px 12px;
+  border-radius:999px;
+  border:none;
+  background:#25d366;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 12px 26px rgba(37,211,102,.45);
+}
+.cart-btn-whats:hover{
+  filter:brightness(1.05);
+}
+.cart-empty{
+  color:#9a7373;
+  margin-top:10px;
+}
+
+/* ================= MODAL PERSONALIZAÇÃO ================= */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.4);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+.modal{
+  width:90%;
+  max-width:520px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 20px 50px rgba(0,0,0,.3);
+  padding:18px 18px 16px;
+  font-size:14px;
+  border:1px solid #ffe1d2;
+}
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+.modal-title{
+  font-weight:600;
+  font-size:16px;
+}
+.modal-close{
+  cursor:pointer;
+  font-size:22px;
+  color:#b26262;
+}
+.modal-body{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.modal-body label{
+  font-size:12px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:#8a625a;
+}
+.modal-body input,
+.modal-body select,
+.modal-body textarea{
+  width:100%;
+  border-radius:9px;
+  border:1px solid #e1c5bc;
+  padding:7px 9px;
+  font-size:13px;
+  font-family:inherit;
+}
+.modal-body textarea{
+  min-height:60px;
+  resize:vertical;
+}
+.modal-footer{
+  margin-top:10px;
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+}
+.btn-secondary{
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid #e1c5bc;
+  background:#fff;
+  font-size:13px;
+  cursor:pointer;
+}
+.btn-primary{
+  padding:8px 14px;
+  border-radius:999px;
+  border:none;
+  background:var(--accent);
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  width:100%;
+  padding:26px 0;
+  text-align:center;
+  background:#ffe8dd;
+  color:var(--text);
+  margin-top:40px;
+  font-size:13px;
+  border-top:1px solid rgba(255,255,255,.8);
+}
+
+/* ================= FAQ WIDGET ================= */
+.faq-widget{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:900;
+  font-size:13px;
+}
+.faq-toggle{
+  border:none;
+  border-radius:999px;
+  padding:10px 16px;
+  background:var(--accent);
+  color:var(--text);
+  font-weight:600;
+  box-shadow:0 14px 30px rgba(0,0,0,.18);
+  cursor:pointer;
+}
+.faq-panel{
+  position:absolute;
+  right:0;
+  bottom:52px;
+  width:280px;
+  max-height:360px;
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 18px 40px rgba(0,0,0,.28);
+  padding:10px 12px 12px;
+  display:none;
+  flex-direction:column;
+  gap:8px;
+  border:1px solid #ffe1d2;
+}
+.faq-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.faq-title{
+  font-weight:600;
+  font-size:14px;
+}
+.faq-close{
+  cursor:pointer;
+  font-size:18px;
+  color:#b26262;
+}
+.faq-questions{
+  margin-top:4px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.faq-question{
+  border:none;
+  border-radius:999px;
+  background:var(--accent-soft);
+  padding:6px 10px;
+  text-align:left;
+  cursor:pointer;
+  font-size:12px;
+}
+.faq-question:hover{
+  background:#ffdbe7;
+}
+.faq-answer{
+  margin-top:6px;
+  padding:8px 10px;
+  background:#fff8f5;
+  border-radius:10px;
+  font-size:12px;
+  min-height:40px;
+  color:var(--text-soft);
+}
+.faq-whats-btn{
+  margin-top:6px;
+  border:none;
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:12px;
+  font-weight:600;
+  background:#25d366;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width:1000px){
+  .hero{
+    padding:100px 0 80px;
+    min-height:auto;
+    background-position:top center;
+  }
+  .hero-inner{
+    flex-direction:column;
+    text-align:center;
+    gap:30px;
+  }
+  .hero-left,
+  .hero-right{
+    width:100%;
+    max-width:100%;
+  }
+  .hero-left h1{
+    font-size:40px;
+  }
+  .hero-left p{
+    font-size:20px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .hero-small{
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .hero-right img{
+    max-width:330px;
+    margin:0 auto;
+  }
+  .benefits-inner{
+    flex-direction:column;
+    gap:6px;
+    font-size:14px;
+  }
+  .benefits{
+    padding:14px 0;
+  }
+  .section{
+    padding:60px 0 55px;
+  }
+  .section p.section-sub{
+    width:90%;
+    font-size:16px;
+  }
+  .model-card{
+    min-width:260px;
+    height:auto;
+  }
+  .gifts{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .cart{
+    width:100%;
+    max-width:100%;
+  }
+}
+@media (max-width:640px){
+  .nav-links{display:none;}
+  .hero-left h1{font-size:32px;}
+  .hero-left p{font-size:18px;}
+  .carousel{width:100%;}
+  .carousel-inner{padding:6px 14px 14px;}
+  .gifts{grid-template-columns:1fr;}
+  .faq-widget{
+    right:12px;
+    bottom:12px;
+  }
+  .faq-panel{
+    width:240px;
+    right:0;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="nav-left">
+      <!-- usa sua logo aqui -->
+      <img class="nav-logo-img" src="img/LOGO.png" alt="Fadaria logo">
+    </div>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#modelos">Criar mapa</a>
+      <a href="#presentes">Presentes</a>
+      <a href="#contato">Contato</a>
+    </div>
+
+    <div class="nav-icons">
+      <div>👤</div>
+      <div class="nav-cart" id="openCart">🛒
+        <div class="nav-cart-count" id="cartCount">0</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h1>Mapa das Estrelas <span>Personalizado</span></h1>
+      <p>Capture o céu de um momento inesquecível em um quadro delicado, elegante e totalmente exclusivo.</p>
+      <a class="hero-btn" href="#modelos">
+        Criar meu mapa agora
+      </a>
+      <div class="hero-small">
+        Quadros a partir de <strong>R$ 89,90</strong>. Você aprova a arte pelo WhatsApp antes da produção.
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="img/CAPAGRANDE.png" alt="Quadro de estrelas Fadaria" />
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="benefits-inner">
+    <div class="benefit-item">🔭 Céu calculado para data, horário e local exatos</div>
+    <div class="benefit-item">🎁 Presente romântico, afetivo e super lembrado</div>
+    <div class="benefit-item">💬 Atendimento rápido e humanizado pelo WhatsApp</div>
+  </div>
+</section>
+
+<!-- ================= MAPAS ================= -->
+<section class="section" id="modelos">
+  <h2>Escolha o modelo do seu mapa</h2>
+  <p class="section-sub">
+    Todos os mapas grandes têm o mesmo valor: <strong>R$ 89,90</strong>.  
+    Você escolhe o estilo e pode preencher nomes, data, horário, local e frase – ou deixar em branco e combinar os detalhes comigo pelo Whats.
+  </p>
+
+  <div class="carousel">
+    <div class="carousel-inner" id="carouselMaps">
+      <!-- Coração -->
+      <div class="model-card" data-product="mapa">
+        <img src="img/HEARTNORMAL.png" alt="Mapa das Estrelas – Coração">
+        <div class="model-body">
+          <div class="model-name">Mapa das Estrelas – Coração</div>
+          <div class="model-price">R$ 89,90</div>
+          <button class="model-btn" onclick="openModal('mapa','Coração')">Personalizar &amp; adicionar</button>
+        </div>
+      </div>
+
+      <!-- Coração Cloudy -->
+      <div class="model-card" data-product="mapa">
+        <img src="img/HEARTCLOUDY.png" alt="Mapa das Estrelas – Coração Cloudy">
+        <div class="model-body">
+          <div class="model-name">Mapa das Estrelas – Coração Cloudy</div>
+          <div class="model-price">R$ 89,90</div>
+          <button class="model-btn" onclick="openModal('mapa','Coração Cloudy')">Personalizar &amp; adicionar</button>
+        </div>
+      </div>
+
+      <!-- Clássico -->
+      <div class="model-card" data-product="mapa">
+        <img src="img/TRADINORMAL.png" alt="Mapa Estrelado – Clássico">
+        <div class="model-body">
+          <div class="model-name">Mapa Estrelado – Clássico</div>
+          <div class="model-price">R$ 89,90</div>
+          <button class="model-btn" onclick="openModal('mapa','Clássico')">Personalizar &amp; adicionar</button>
+        </div>
+      </div>
+
+      <!-- Clássico Cloudy -->
+      <div class="model-card" data-product="mapa">
+        <img src="img/TRADICLOUDY.png" alt="Mapa Estrelado – Clássico Cloudy">
+        <div class="model-body">
+          <div class="model-name">Mapa Estrelado – Clássico Cloudy</div>
+          <div class="model-price">R$ 89,90</div>
+          <button class="model-btn" onclick="openModal('mapa','Clássico Cloudy')">Personalizar &amp; adicionar</button>
+        </div>
+      </div>
+
+      <!-- Glow -->
+      <div class="model-card" data-product="mapa">
+        <img src="img/GLOWNORMAL.png" alt="Mapa das Estrelas – Glow">
+        <div class="model-body">
+          <div class="model-name">Mapa das Estrelas – Glow</div>
+          <div class="model-price">R$ 89,90</div>
+          <button class="model-btn" onclick="openModal('mapa','Glow')">Personalizar &amp; adicionar</button>
+        </div>
+      </div>
+
+      <!-- Glow Cloudy -->
+      <div class="model-card" data-product="mapa">
+        <img src="img/GLOWCLOUDY.png" alt="Mapa das Estrelas – Glow Cloudy">
+        <div class="model-body">
+          <div class="model-name">Mapa das Estrelas – Glow Cloudy</div>
+          <div class="model-price">R$ 89,90</div>
+          <button class="model-btn" onclick="openModal('mapa','Glow Cloudy')">Personalizar &amp; adicionar</button>
+        </div>
+      </div>
+
+      <!-- Mapa do Signo -->
+      <div class="model-card" data-product="signo">
+        <img src="img/SIGNO.png" alt="Quadro Mapa do Signo">
+        <div class="model-body">
+          <div class="model-name">Quadro Mapa do Signo</div>
+          <div class="model-price">R$ 69,90</div>
+          <button class="model-btn" onclick="openModal('signo','Mapa do Signo')">Personalizar &amp; adicionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="carousel-nav">
+    <button onclick="document.getElementById('carouselMaps').scrollBy({left:-320,behavior:'smooth'})">‹ Anterior</button>
+    <button onclick="document.getElementById('carouselMaps').scrollBy({left:320,behavior:'smooth'})">Próximo ›</button>
+  </div>
+</section>
+
+<!-- ================= OUTROS PRESENTES ================= -->
+<section class="section" id="presentes">
+  <h2>Outros presentes Fadaria</h2>
+  <p class="section-sub">
+    Monte um kit completo combinando o mapa das estrelas com outros presentes afetivos feitos à mão.
+  </p>
+
+  <div class="gifts">
+    <div class="gift-card">
+      <div class="gift-img">
+        <img src="img/CAIXAPOLAROIDS.jpg" alt="Caixa Polaroids com doces">
+      </div>
+      <div class="gift-body">
+        <div class="gift-name">Caixa Polaroids + Doces</div>
+        <div class="gift-price">R$ 59,90</div>
+        <p>Caixinha com polaroids personalizadas, chocolate e um mimo especial para completar a surpresa.</p>
+        <button class="gift-btn" onclick="addSimpleProduct('Caixa Polaroids + Doces',59.90)">Adicionar ao carrinho</button>
+      </div>
+    </div>
+
+    <div class="gift-card">
+      <div class="gift-img">
+        <img src="img/TRADINORMAL.png" alt="Quadro das Estrelas Pequeno">
+      </div>
+      <div class="gift-body">
+        <div class="gift-name">Quadro das Estrelas Pequeno (10x15)</div>
+        <div class="gift-price">R$ 59,90</div>
+        <p>Versão compacta do mapa das estrelas em 10x15 cm, ideal para kits e lembranças delicadas.</p>
+        <button class="gift-btn" onclick="addSimpleProduct('Quadro das Estrelas Pequeno (10x15)',59.90)">Adicionar ao carrinho</button>
+      </div>
+    </div>
+
+    <div class="gift-card">
+      <div class="gift-img">
+        <img src="img/pote.jpg" alt="Pote das Mensagens">
+      </div>
+      <div class="gift-body">
+        <div class="gift-name">Pote das Mensagens</div>
+        <div class="gift-price">R$ 69,90</div>
+        <p>Um pote cheio de recadinhos e motivos para lembrar todos os dias o quanto essa pessoa é importante.</p>
+        <button class="gift-btn" onclick="addSimpleProduct('Pote das Mensagens',69.90)">Adicionar ao carrinho</button>
+      </div>
+    </div>
+
+    <div class="gift-card">
+      <div class="gift-img">
+        <img src="img/FLORCETIM.jpg" alt="Rosa de cetim com bombom">
+      </div>
+      <div class="gift-body">
+        <div class="gift-name">Rosa de Cetim com Bombom</div>
+        <div class="gift-price">R$ 29,90</div>
+        <p>Detalhe romântico para acompanhar o restante do presente e deixar o momento ainda mais especial.</p>
+        <button class="gift-btn" onclick="addSimpleProduct('Rosa de Cetim com Bombom',29.90)">Adicionar ao carrinho</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contato">
+  © 2024 Fadaria – Mapas das Estrelas & Presentes Personalizados • Fale comigo pelo WhatsApp para combinar arte, prazos e frete.
+</footer>
+
+<!-- ================= CARRINHO ================= -->
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart">
+    <div class="cart-header">
+      <span class="cart-title">Seu carrinho</span>
+      <span class="cart-close" onclick="closeCart()">✕</span>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Seu carrinho está vazio.</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cartTotal">R$ 0,00</span>
+      </div>
+      <button class="cart-btn-whats" onclick="sendWhatsApp()">Fechar pedido pelo WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL PERSONALIZAÇÃO ================= -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Personalizar produto</div>
+      <div class="modal-close" onclick="closeModal()">×</div>
+    </div>
+    <form id="customForm" onsubmit="submitCustomization(event)">
+      <div class="modal-body" id="modalBody">
+        <!-- campos via JS -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+        <button type="submit" class="btn-primary">Adicionar ao carrinho</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ================= FAQ WIDGET ================= -->
+<div class="faq-widget">
+  <button class="faq-toggle" id="faqToggle">Dúvidas?</button>
+  <div class="faq-panel" id="faqPanel">
+    <div class="faq-header">
+      <div class="faq-title">Posso te ajudar?</div>
+      <div class="faq-close" id="faqClose">×</div>
+    </div>
+    <div class="faq-questions" id="faqQuestions"></div>
+    <div class="faq-answer" id="faqAnswer">
+      Clique em uma pergunta para ver a resposta 💫
+    </div>
+    <button class="faq-whats-btn" onclick="openWhatsFromFaq()">Falar no WhatsApp</button>
+  </div>
+</div>
+
+<script>
+let cart = [];
+let currentProduct = null;
+
+const cartOverlay = document.getElementById('cartOverlay');
+const cartItemsEl  = document.getElementById('cartItems');
+const cartTotalEl  = document.getElementById('cartTotal');
+const cartCountEl  = document.getElementById('cartCount');
+
+document.getElementById('openCart').addEventListener('click',()=>{
+  cartOverlay.style.display='flex';
+});
+cartOverlay.addEventListener('click',(e)=>{
+  if(e.target===cartOverlay) closeCart();
+});
+function closeCart(){ cartOverlay.style.display='none'; }
+
+function formatMoney(v){
+  return 'R$ '+v.toFixed(2).replace('.',',');
+}
+function updateCartUI(){
+  cartItemsEl.innerHTML='';
+  if(cart.length===0){
+    cartItemsEl.innerHTML='<div class="cart-empty">Seu carrinho está vazio.</div>';
+  }else{
+    cart.forEach((item,index)=>{
+      const div=document.createElement('div');
+      div.className='cart-item';
+      div.innerHTML=`
+        <div class="cart-item-title">${item.name}</div>
+        <div class="cart-item-meta">${item.details ? item.details.replace(/\\n/g,'<br>') : ''}</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;">
+          <span>${formatMoney(item.price)}</span>
+          <button style="border:none;background:none;font-size:12px;color:#b26262;cursor:pointer;" onclick="removeItem(${index})">remover</button>
+        </div>
+      `;
+      cartItemsEl.appendChild(div);
+    });
+  }
+  const total=cart.reduce((acc,it)=>acc+it.price,0);
+  cartTotalEl.textContent=formatMoney(total);
+  cartCountEl.textContent=cart.length;
+}
+function removeItem(index){
+  cart.splice(index,1);
+  updateCartUI();
+}
+function addSimpleProduct(name,price){
+  cart.push({name,price,details:''});
+  updateCartUI();
+  cartOverlay.style.display='flex';
+}
+
+/* MODAL PERSONALIZAÇÃO */
+const modalOverlay=document.getElementById('modalOverlay');
+const modalTitle=document.getElementById('modalTitle');
+const modalBody=document.getElementById('modalBody');
+modalOverlay.addEventListener('click',(e)=>{
+  if(e.target===modalOverlay) closeModal();
+});
+function openModal(type,presetModel){
+  currentProduct={type,presetModel};
+  modalOverlay.style.display='flex';
+
+  if(type==='mapa'){
+    modalTitle.textContent=`Personalizar Mapa das Estrelas – ${presetModel}`;
+    modalBody.innerHTML=`
+      <label>Modelo</label>
+      <select name="modelo">
+        <option ${presetModel==='Coração'?'selected':''}>Coração</option>
+        <option ${presetModel==='Coração Cloudy'?'selected':''}>Coração Cloudy</option>
+        <option ${presetModel==='Clássico'?'selected':''}>Clássico</option>
+        <option ${presetModel==='Clássico Cloudy'?'selected':''}>Clássico Cloudy</option>
+        <option ${presetModel==='Glow'?'selected':''}>Glow</option>
+        <option ${presetModel==='Glow Cloudy'?'selected':''}>Glow Cloudy</option>
+      </select>
+
+      <label>Nomes</label>
+      <input name="nomes" placeholder="Ex: Maria &amp; Murilo">
+
+      <label>Data</label>
+      <input type="date" name="data">
+
+      <label>Horário</label>
+      <input type="time" name="hora">
+
+      <label>Local</label>
+      <input name="local" placeholder="Cidade / Estado">
+
+      <label>Frase (opcional)</label>
+      <textarea name="frase" placeholder="Escreva uma frase especial (se quiser)"></textarea>
+    `;
+  }else if(type==='signo'){
+    modalTitle.textContent=`Personalizar Quadro do Signo`;
+    modalBody.innerHTML=`
+      <label>Nome</label>
+      <input name="nome" placeholder="Nome da pessoa">
+
+      <label>Signo</label>
+      <select name="signo">
+        <option value="">Selecione...</option>
+        <option>Áries</option><option>Touro</option><option>Gêmeos</option>
+        <option>Câncer</option><option>Leão</option><option>Virgem</option>
+        <option>Libra</option><option>Escorpião</option><option>Sagitário</option>
+        <option>Capricórnio</option><option>Aquário</option><option>Peixes</option>
+      </select>
+
+      <label>Frase (opcional)</label>
+      <textarea name="frase" placeholder="Frase ou características do signo (se quiser)"></textarea>
+    `;
+  }
+}
+function closeModal(){
+  modalOverlay.style.display='none';
+  currentProduct=null;
+}
+function submitCustomization(e){
+  e.preventDefault();
+  if(!currentProduct) return;
+
+  const formData=new FormData(e.target);
+  let details='';
+  let price=0;
+  let name='';
+
+  if(currentProduct.type==='mapa'){
+    name='Mapa das Estrelas Personalizado';
+    price=89.90;
+    details=
+      `Modelo: ${formData.get('modelo') || '-'}\\n`+
+      `Nomes: ${formData.get('nomes') || '-'}\\n`+
+      `Data: ${formData.get('data') || '-'} às ${formData.get('hora') || '-'}\\n`+
+      `Local: ${formData.get('local') || '-'}\\n`+
+      `Frase: ${formData.get('frase') || '-'}`;
+  }else if(currentProduct.type==='signo'){
+    name='Quadro Mapa do Signo';
+    price=69.90;
+    details=
+      `Nome: ${formData.get('nome') || '-'}\\n`+
+      `Signo: ${formData.get('signo') || '-'}\\n`+
+      `Frase: ${formData.get('frase') || '-'}`;
+  }
+
+  cart.push({name,price,details});
+  updateCartUI();
+  closeModal();
+  cartOverlay.style.display='flex';
+}
+
+/* WHATSAPP */
+const WHATS_NUMBER_URL='https://api.whatsapp.com/send?phone=5542988354409';
+function sendWhatsApp(){
+  if(cart.length===0){
+    alert('Seu carrinho está vazio.');
+    return;
+  }
+  let text='Olá, quero fechar um pedido na Fadaria:%0A%0A';
+  cart.forEach((item,idx)=>{
+    text+=`#${idx+1} - ${item.name} (${formatMoney(item.price)}):%0A`;
+    if(item.details){
+      text+=item.details.replace(/\\n/g,'%0A')+'%0A';
+    }
+    text+='%0A';
+  });
+  const total=cart.reduce((acc,it)=>acc+it.price,0);
+  text+=`Total aproximado: ${formatMoney(total)}%0A%0A`+
+        'Podemos confirmar frete, forma de envio e detalhes da arte?';
+  const url=WHATS_NUMBER_URL+'&text='+text;
+  window.open(url,'_blank');
+}
+
+/* FAQ */
+const faqToggle=document.getElementById('faqToggle');
+const faqPanel=document.getElementById('faqPanel');
+const faqClose=document.getElementById('faqClose');
+const faqQuestionsEl=document.getElementById('faqQuestions');
+const faqAnswerEl=document.getElementById('faqAnswer');
+
+const faqData=[
+  {
+    q:'Como funciona o mapa das estrelas?',
+    a:'Uso a data, o horário e o local que você informar para gerar o céu exato daquele momento e transformar em um quadro personalizado.'
+  },
+  {
+    q:'Qual é o prazo de produção e envio?',
+    a:'Em média produzo em 2 a 4 dias úteis após você aprovar a arte pelo WhatsApp. O prazo de entrega depende do frete para a sua cidade.'
+  },
+  {
+    q:'Eu vejo a arte antes de imprimir?',
+    a:'Sim! Sempre envio a prévia pelo Whats e só produzo depois da sua aprovação final.'
+  },
+  {
+    q:'Quais são as formas de pagamento?',
+    a:'Normalmente trabalho com Pix e, se precisar, podemos combinar outras opções diretamente pelo WhatsApp.'
+  },
+  {
+    q:'Vocês enviam para todo o Brasil?',
+    a:'Sim, envio para todo o Brasil. No Whats calculo o frete certinho para o seu endereço.'
+  }
+];
+
+faqData.forEach(item=>{
+  const btn=document.createElement('button');
+  btn.className='faq-question';
+  btn.textContent=item.q;
+  btn.addEventListener('click',()=>{faqAnswerEl.textContent=item.a;});
+  faqQuestionsEl.appendChild(btn);
+});
+faqToggle.addEventListener('click',()=>{
+  faqPanel.style.display=faqPanel.style.display==='flex'?'none':'flex';
+});
+faqClose.addEventListener('click',()=>{faqPanel.style.display='none';});
+function openWhatsFromFaq(){
+  const text='Olá, vim do site da Fadaria e tenho algumas dúvidas 🙂';
+  const url=WHATS_NUMBER_URL+'&text='+encodeURIComponent(text);
+  window.open(url,'_blank');
+}
+</script>
+
+</body>
+</html>
